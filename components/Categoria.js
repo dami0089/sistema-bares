@@ -1,0 +1,31 @@
+import Image from "next/image";
+import useKiosco from "../hooks/useKiosco";
+
+const Categoria = ({ categoria }) => {
+  const { categoriaActual, handleClickCategoria } = useKiosco();
+  const { nombre, icono, id } = categoria;
+  return (
+    <div
+      className={`${
+        categoriaActual?.id === id ? "bg-amber-400" : ""
+      } flex items-center gap-4 w-full border p-4 hover:bg-amber-400`}
+      onClick={() => handleClickCategoria(id)}
+    >
+      <Image
+        alt="Imagen icono"
+        width={70}
+        height={70}
+        src={`/assets/img/icono_${icono}.svg`}
+      />
+      <button
+        type="button"
+        onClick={() => handleClickCategoria(id)}
+        className="text-2xl border-none bg-transparent font-bold hover:cursor-pointer"
+      >
+        {nombre}
+      </button>
+    </div>
+  );
+};
+
+export default Categoria;
